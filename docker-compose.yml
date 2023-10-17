@@ -5,12 +5,25 @@ services:
       - postgres
     environment:
       - POSTGRES_URL=postgresql://postgres/sreality_db?user=user&password=password
+    
+  server:
+    build: server
+    depends_on:
+      - postgres
+    ports:
+      - 8080:8080
+    environment:
+      - POSTGRES_URL=postgresql://postgres/sreality_db?user=user&password=password
+    volumes:
+      - ./server:/server
+
   postgres:
     image: postgres:16.0
     environment:
       - POSTGRES_PASSWORD=password
       - POSTGRES_USER=user
       - POSTGRES_DB=sreality_db
+
   pgadmin:
     image: dpage/pgadmin4
     depends_on:

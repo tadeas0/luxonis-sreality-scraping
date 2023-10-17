@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Scraped estates</title>
+        <link href="https://fonts.googleapis.com/css?family=Inter" rel="stylesheet">
+        <style type="text/css" rel="stylesheet">
+            body {
+                font-family: "Inter";
+                padding: 2rem;
+            }
+            
+            .page-title {
+                font-weight: 900;
+                padding-bottom: 1.5rem;
+            }
+            
+            .flat-image {
+                width: 12rem;
+            }
+
+            .estate-card {
+                padding-bottom: 2.5rem;
+            }
+
+            .estate-card-title {
+                font-size: 1.2rem;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 class="page-title">Scraped estates ({{ estates|length }} total)</h1>
+        {% for estate in estates %}
+            <div class="estate-card">
+                <h2 class="estate-card-title">{{ estate.name }}</h2>
+                {% for image in estate.image_urls %}
+                    <img class="flat-image" src={{ image }} />
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </body>
+</html>
