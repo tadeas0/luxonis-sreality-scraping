@@ -1,6 +1,8 @@
 services:
   scraper:
     build: scraper
+    depends_on:
+      - postgres
     environment:
       - POSTGRES_URL=postgresql://postgres/sreality_db?user=user&password=password
   postgres:
@@ -11,6 +13,8 @@ services:
       - POSTGRES_DB=sreality_db
   pgadmin:
     image: dpage/pgadmin4
+    depends_on:
+      - postgres
     ports:
       - 9090:80
     environment:
