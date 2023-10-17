@@ -10,7 +10,8 @@ class SrealitySpider(scrapy.Spider):
             "https://www.sreality.cz/api/cs/v2/estates?"
             "category_main_cb=1&"
             "category_type_cb=1&"
-            "page=1&per_page=500"
+            "page=1&"
+            "per_page=500"
         )
     ]
 
@@ -19,4 +20,8 @@ class SrealitySpider(scrapy.Spider):
 
         for estate in data["_embedded"]["estates"]:
             image_urls = [i["href"] for i in estate["_links"]["images"]]
-            yield EstateItem(name=estate["name"], image_urls=image_urls)
+            yield EstateItem(
+                name=estate["name"],
+                image_urls=image_urls,
+                sreality_id=estate["hash_id"]
+            )
