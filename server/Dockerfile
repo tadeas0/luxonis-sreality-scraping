@@ -2,7 +2,9 @@ FROM python:3.12
 
 RUN mkdir /server
 WORKDIR /server
-COPY requirements.txt .
+COPY ./estate_db ./estate_db
+RUN pip install ./estate_db
+COPY ./server/requirements.txt .
 RUN pip install -r requirements.txt
-COPY . .
+COPY ./server .
 CMD ["gunicorn", "server:app", "--reload", "--bind", "0.0.0.0:8080"]

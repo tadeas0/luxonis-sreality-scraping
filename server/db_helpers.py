@@ -1,6 +1,6 @@
-import psycopg
 from flask import g
 from settings import POSTGRES_URL
+from estate_db.DBClient import DBClient
 
 
 class MissingEnvVarException(Exception):
@@ -12,8 +12,8 @@ def get_db():
         if not POSTGRES_URL:
             raise MissingEnvVarException("missing POSTGRES_URL")
 
-        conn = psycopg.connect(conninfo=POSTGRES_URL)
-        g.db = conn
+        db = DBClient(POSTGRES_URL)
+        g.db = db
     return g.db
 
 
