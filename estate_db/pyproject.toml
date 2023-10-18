@@ -1,0 +1,12 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "estate_db"
+version = "0.0.1"
+dependencies = [
+    "psycopg==3.1.12",
+    "psycopg-binary==3.1.12",
+    "typing_extensions==4.8.0",
+]

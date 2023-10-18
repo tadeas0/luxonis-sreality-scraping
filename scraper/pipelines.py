@@ -1,6 +1,7 @@
 import scrapy
 from items import EstateItem
-from db.DBClient import DBClient
+from estate_db.DBClient import DBClient
+from estate_db.model import ImageCreationDTO, EstateCreationDTO
 
 
 class PostgresPipeline:
@@ -21,5 +22,11 @@ class PostgresPipeline:
         self.db_client.close()
 
     def process_item(self, item: EstateItem, spider: scrapy.Spider):
-        self.db_client.insert_estate(item)
+        images = [ImageCreationDTO(i) for i in item["image_urls"]]
+        estate = EstateCreationDTO(
+            item["sreality_id"],
+            item["name"],
+            images
+        )
+        self.db_client.insert_estate(estate)
         return item

@@ -1,6 +1,6 @@
 from flask import g
 from settings import POSTGRES_URL
-from db.DBClient import DBClient
+from estate_db.DBClient import DBClient
 
 
 class MissingEnvVarException(Exception):

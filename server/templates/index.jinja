@@ -32,8 +32,8 @@
         {% for estate in estates %}
             <div class="estate-card">
                 <h2 class="estate-card-title">{{ estate.name }}</h2>
-                {% for image in estate.image_urls %}
-                    <img class="flat-image" src={{ image }} />
+                {% for image in estate.images %}
+                    <img class="flat-image" src={{ image.url }} />
                 {% endfor %}
             </div>
         {% endfor %}

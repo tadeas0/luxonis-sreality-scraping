@@ -25,3 +25,14 @@ insert_image = b"""
     INSERT INTO image (url, estate_id)
     VALUES (%s, %s)
     """
+
+select_estates_images = b"""
+    SELECT estate.id as estate_id,
+           estate.sreality_id,
+           image.id as image_id,
+           estate.name as estate_name,
+           url as image_url
+    FROM estate
+    LEFT JOIN image ON estate.id = image.estate_id
+    ORDER BY estate_id;
+    """

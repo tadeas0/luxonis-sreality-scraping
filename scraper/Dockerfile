@@ -2,7 +2,9 @@ FROM python:3.12
 
 RUN mkdir /scraper
 WORKDIR /scraper
-COPY requirements.txt .
+COPY ./estate_db ./estate_db
+RUN pip install ./estate_db
+COPY ./scraper/requirements.txt .
 RUN pip install -r requirements.txt
-COPY . .
+COPY ./scraper .
 CMD ["python3", "schedule_scraper.py"]
