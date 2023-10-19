@@ -11,3 +11,4 @@ ITEM_PIPELINES = {
     "pipelines.PostgresPipeline": 300,
 }
 POSTGRES_URL = os.environ.get("POSTGRES_URL")
+SCRAPING_INTERVAL_MINUTES = 5
