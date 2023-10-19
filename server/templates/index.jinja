@@ -7,7 +7,7 @@
     </head>
     <body>
         <div>
-            <h1 class="page-title">Scraped estates ({{ estates|length }} total)</h1>
+            <h1 class="page-title">Scraped estates ({{ total_estates }} total)</h1>
             {% for estate in estates %}
                 <div class="estate-card">
                     <h2 class="estate-card-title">{{ estate.name }}</h2>
@@ -18,6 +18,19 @@
                     </div>
                 </div>
             {% endfor %}
+            <nav class="pages-nav">
+                <ul>
+                    {% for page in page_list %}
+                        {% if page == curr_page %}
+                            <li class="curr-page"><a href="/page/{{ page }}">{{ page }}</a></li>
+                        {% elif page == None %}
+                            <li class="dots">...</li>
+                        {% else %}
+                            <li><a href="/page/{{ page }}">{{ page }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </nav>
         </div>
     </body>
 </html>
