@@ -5,6 +5,8 @@ from estate_db.model import ImageCreationDTO, EstateCreationDTO
 
 
 class PostgresPipeline:
+    """Pipeline responsible for saving scraped items to Postgres database"""
+
     def __init__(self, postgres_url: str):
         self.postgres_url = postgres_url
         self.db_client = DBClient(self.postgres_url)
