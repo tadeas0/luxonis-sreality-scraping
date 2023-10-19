@@ -27,12 +27,24 @@ insert_image = b"""
     """
 
 select_estates_images = b"""
-    SELECT estate.id as estate_id,
-           estate.sreality_id,
-           image.id as image_id,
-           estate.name as estate_name,
-           url as image_url
-    FROM estate
-    LEFT JOIN image ON estate.id = image.estate_id
+    WITH limited_estate as (
+        SELECT *
+        FROM estate
+        ORDER BY id
+        LIMIT %s
+        OFFSET %s
+    )
+    SELECT limited_estate.id as estate_id,
+        limited_estate.sreality_id,
+        image.id as image_id,
+        limited_estate.name as estate_name,
+        url as image_url
+    FROM limited_estate
+    LEFT JOIN image ON limited_estate.id = image.estate_id
     ORDER BY estate_id;
+    """
+
+select_estate_count = b"""
+    SELECT COUNT(id) as estate_count
+    FROM estate
     """

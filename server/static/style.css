@@ -14,6 +14,7 @@ body {
     width: 12rem;
 }
 
+/* Estate card */
 .estate-card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     padding: 0.25rem 1.5rem 1.5rem 1.5rem;
@@ -37,4 +38,37 @@ body {
 
 .estate-card-title {
     font-size: 1.5rem;
+}
+
+/* Pagination navigation */
+.pages-nav {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    font-size: 1.5rem;
+}
+
+.pages-nav li {
+    display: inline-block;
+}
+
+.pages-nav a,
+.pages-nav a:visited {
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    color: black;
+}
+
+.pages-nav a:hover {
+    background-color: #e8e8e8;
+}
+
+.pages-nav li.curr-page a {
+    background-color: #c9c9c9;
+}
+
+.pages-nav li.dots {
+    color: black;
+    padding: 0;
 }

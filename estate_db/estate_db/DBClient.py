@@ -45,9 +45,13 @@ class DBClient:
             else:
                 conn.rollback()
 
-    def get_estates(self) -> list[Estate]:
+    def get_estates(
+        self,
+        take: int | None = None,
+        skip: int | None = None
+    ) -> list[Estate]:
         conn = self._get_connection()
-        res = conn.execute(queries.select_estates_images)
+        res = conn.execute(queries.select_estates_images, (take, skip))
 
         if res is None:
             return []
@@ -67,3 +71,17 @@ class DBClient:
                 )
 
         return list(estate_dict.values())
+
+    def get_estate_count(self) -> int:
+        conn = self._get_connection()
+        res = conn.execute(queries.select_estate_count)
+
+        if res is None:
+            return 0
+
+        count = res.fetchone()
+
+        if count is None:
+            return 0
+
+        return count[0]
