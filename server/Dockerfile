@@ -7,4 +7,4 @@ RUN pip install ./estate_db
 COPY ./server/requirements.txt .
 RUN pip install -r requirements.txt
 COPY ./server .
-CMD ["gunicorn", "server:app", "--reload", "--bind", "0.0.0.0:8080"]
+CMD ["gunicorn", "server:create_app()", "--reload", "--bind", "0.0.0.0:8080"]
