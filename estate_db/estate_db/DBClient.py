@@ -4,6 +4,11 @@ import estate_db.queries as queries
 
 
 class DBClient:
+    """
+    DBClient encapsulates methods for accessing Postgres database and
+    creating and retrieving estates from it.
+    """
+
     def __init__(self, postgres_url: str) -> None:
         self.postgres_url = postgres_url
         self.connection = None
@@ -14,15 +19,24 @@ class DBClient:
         return self.connection
 
     def init_db(self) -> None:
+        """
+        Creates necessary tables, if they do not already exist.
+        Method can be safely called even if the tables already exist.
+        """
+
         conn = self._get_connection()
         with conn.cursor() as c:
             c.execute(queries.create_estate_table)
             c.execute(queries.create_image_table)
 
     def close(self) -> None:
+        """Closes the connection to the database"""
+
         self._get_connection().close()
 
     def insert_estate(self, item: EstateCreationDTO) -> None:
+        """Inserts new estate to database."""
+
         conn = self._get_connection()
         with conn.cursor() as c:
             try:
@@ -50,6 +64,8 @@ class DBClient:
         take: int | None = None,
         skip: int | None = None
     ) -> list[Estate]:
+        """Returns all estates and their respective image URLs."""
+
         conn = self._get_connection()
         res = conn.execute(queries.select_estates_images, (take, skip))
 
@@ -73,6 +89,8 @@ class DBClient:
         return list(estate_dict.values())
 
     def get_estate_count(self) -> int:
+        """Returns total number of estates saved in the database."""
+
         conn = self._get_connection()
         res = conn.execute(queries.select_estate_count)
 

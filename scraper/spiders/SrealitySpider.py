@@ -4,6 +4,8 @@ from items import EstateItem
 
 
 class SrealitySpider(scrapy.Spider):
+    """Spider used for scraping estates from Sreality"""
+
     name = "sreality"
     start_urls = [
         (
