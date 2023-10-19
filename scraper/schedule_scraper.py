@@ -1,6 +1,7 @@
 import schedule
 import time
 from subprocess import call
+from settings import SCRAPING_INTERVAL_MINUTES
 
 
 def run_spider():
@@ -8,7 +9,7 @@ def run_spider():
 
 
 if __name__ == "__main__":
-    schedule.every(5).minutes.do(run_spider)
+    schedule.every(SCRAPING_INTERVAL_MINUTES).minutes.do(run_spider)
     schedule.run_all()
 
     while True:

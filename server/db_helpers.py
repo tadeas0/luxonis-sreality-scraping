@@ -1,4 +1,4 @@
-from flask import g
+from flask import Flask, g
 from settings import POSTGRES_URL
 from estate_db.DBClient import DBClient
 
@@ -22,3 +22,7 @@ def close_db(e=None):
 
     if db is not None:
         db.close()
+
+
+def init_app(app: Flask):
+    app.teardown_appcontext(close_db)
