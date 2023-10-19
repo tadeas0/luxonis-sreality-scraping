@@ -1,0 +1,40 @@
+body {
+    font-family: "Inter";
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.page-title {
+    font-weight: 900;
+    margin-bottom: 2rem;
+}
+
+.flat-image {
+    width: 12rem;
+}
+
+.estate-card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 0.25rem 1.5rem 1.5rem 1.5rem;
+    margin-bottom: 1rem;
+    border-radius: 0.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap: 1.5rem;
+}
+
+.estate-card-body {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.estate-card-body img {
+    border-radius: 0.25rem;
+}
+
+.estate-card-title {
+    font-size: 1.5rem;
+}
