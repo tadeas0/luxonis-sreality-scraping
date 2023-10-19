@@ -1,7 +1,9 @@
 from flask import Blueprint, render_template
 from db_helpers import get_db
-from settings import PAGE_SIZE
+from settings import PAGE_SIZE, DEFAULT_LOGGER
+import logging
 
+logger = logging.getLogger(DEFAULT_LOGGER)
 
 estates_bp = Blueprint("auth", __name__)
 
@@ -28,6 +30,7 @@ def render_page(page_number: int):
             page_list.insert(0, None)
             page_list.insert(0, 1)
 
+        logger.info(f"Rendering page {page_number}")
         return render_template(
             "index.jinja",
             estates=estates,
@@ -35,7 +38,8 @@ def render_page(page_number: int):
             page_list=page_list,
             curr_page=page_number
         )
-    except Exception:
+    except Exception as e:
+        logger.exception(e)
         return render_template(
             "index.jinja",
             estates=[],
